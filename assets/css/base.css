@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+:root {
+    --container-height: 600px;
+    --contaier-width: 400px;
+    --header-height: 150px;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Ubuntu', monospace;
+}
+html {
+    font-size: 20px;
+}
+
+body {
+    background-image: url('../img/alex-shutin-kKvQJ6rK6S4-unsplash.jpg');
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    background-image: url('../img/luke-chesser-3rWagdKBF7U-unsplash.jpg');
+    width: var(--contaier-width);
+    height: var(--container-height);
+
+    position: relative;
+    overflow: hidden;
+}

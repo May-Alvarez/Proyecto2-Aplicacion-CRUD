@@ -5,30 +5,31 @@ const toDoListElement = document.getElementById('toDo-list');
 const notificationElement = document.querySelector('.notification');
 
 //Variables
-let toDos = JSON.parse(localStorage.getItem('toDos')) || [];
+let toDos = JSON.parse(localStorage.getItem('todo')) || [];
 let EditTodoId = -1;
 
 // 1st render
 renderToDo();
 
-// Evento submit del Formulario
+// Evento submit del Formulario 
 form.addEventListener('submit', function(event){
     event.preventDefault();
     
     guardarToDo();
     renderToDo();
-    localStorage.setItem('toDos', JSON.stringify(toDos));
+    localStorage.setItem('todo', JSON.stringify(toDos));
 });
 
 //Funcion GuardarToDo
 function guardarToDo(){
     const toDoValue = toDoInput.value
 
+    //Verificar si el input esta Vacio
+    const isEmpty = toDoValue === '';
+
     //Verificar si la tarea esta Duplicada
     const duplicado = toDos.some((toDo) => toDo.value.toUpperCase() === toDoValue.toUpperCase());
 
-    //Verificar si el input esta Vacio
-    const isEmpty = toDoValue === '';
     if(isEmpty){
         showNotification("El ToDo esta Vacio");
     }
@@ -87,7 +88,7 @@ toDoListElement.addEventListener('click', (event) => {
     const target = event.target;
     const parentElement = target.parentNode;
 
-    if (parentElement.className !== 'toDos') return;
+    if (parentElement.className !== 'todo') return;
 
     // Id de las Tareas
     const todo = parentElement;
@@ -107,9 +108,9 @@ function checkToDo(todoId) {
         ...todo,
         checked: index === todoId ? !todo.checked : todo.checked,
     }));
-    
+
     renderToDo();
-    localStorage.setItem('todos', JSON.stringify(toDos));
+    localStorage.setItem('todo', JSON.stringify(toDos));
 }
 
 // Funcion Editar
@@ -125,7 +126,7 @@ function deleteToDo(todoId) {
 
     // re-render
     renderToDo();
-    localStorage.setItem('toDos', JSON.stringify(toDos));
+    localStorage.setItem('todo', JSON.stringify(toDos));
 }
 
   // Mostrar Notificacion

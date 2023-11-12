@@ -1,0 +1,46 @@
+#toDo-list {
+    height: calc(var(--container-height) - var(--header-height));
+    background-color: #fff;
+    padding: 0.5rem;
+    border: 1px solid rgb(219, 219, 219);
+    overflow: scroll;
+    border-radius: 0 0 5px 5px;
+}
+
+#toDo-list .todo {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 0.5rem;
+    border-radius: 5px;
+}
+
+#toDo-list .todo:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+#toDo-list .todo * {
+    cursor: pointer;
+    margin-right: 0.5rem;
+}
+
+#toDo-list .todo i {
+    font-size: 0.9rem;
+}
+
+#toDo-list .todo p {
+    flex: 1;
+    word-break: break-all;
+}
+.checked {
+    text-decoration: line-through;
+    color: grey;
+}
+
+#toDo-list .todo .bi-pencil-square {
+    color: rgb(31, 177, 48);
+}
+
+#toDo-list .todo .bi-trash {
+    color: rgb(236, 82, 82);
+    margin: 0;
+}

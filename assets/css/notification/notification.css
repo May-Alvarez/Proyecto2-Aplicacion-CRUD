@@ -1,0 +1,25 @@
+.notification {
+    position: absolute;
+    
+    width: calc(3 * var(--contaier-width) / 4);
+    height: 60px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    opacity: 0.9;
+    
+    border-radius: 8px;
+    background-color: rgb(233, 81, 81);
+    top: 10px;
+    right: calc(-3 * var(--contaier-width) / 4);
+    
+    color: #fff;
+    
+    transition: 300ms right ease-in-out;
+}
+
+.notif-enter {
+    right: 10px;
+}
