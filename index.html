@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto 2 Aplicación CRUD</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header_container">
+                <h2 class="header_titulo">To DO</h2>
+            </div>
+
+            <div class="nueva-tarea">
+                <form id="todoForm">
+                    <input type="text" name="nuevaTarea" id="nuevaTarea" placeholder="Voy a hacer..."/>
+                    <button type="submit">
+                        <i class="bi bi-plus-circle-fill"></i>
+                    </button>
+                </form>
+            </div>
+
+        </header>
+
+        <div id="toDo-list">
+            <div class="toDo" id="0">
+                <i class="bi bi-circle"></i>
+                <i class="bi bi-check-circle"></i>
+                <p class=""></p>
+                <i class="bi bi-pencil-square"></i>
+                <i class="bi bi-trash"></i>
+            </div>
+        </div>
+
+    </div>
+
+
+</body>
+</html>
