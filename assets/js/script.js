@@ -108,3 +108,13 @@ function editToDo(todoId) {
     toDoInput.value = toDos[todoId].value;
     EditTodoId = todoId;
 }
+
+// Funcion Eliminar
+function deleteToDo(todoId) {
+    toDos = toDos.filter((todo, index) => index !== todoId);
+    EditTodoId = -1;
+
+    // re-render
+    renderToDo();
+    localStorage.setItem('toDos', JSON.stringify(toDos));
+}
