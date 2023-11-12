@@ -17,7 +17,7 @@ html {
 }
 
 body {
-    background-image: url('../img/alex-shutin-kKvQJ6rK6S4-unsplash.jpg');
+    background-image: url('../img/bg-Base/alex-shutin-kKvQJ6rK6S4-unsplash.jpg');
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -26,7 +26,7 @@ body {
 }
 
 .container {
-    background-image: url('../img/luke-chesser-3rWagdKBF7U-unsplash.jpg');
+    background-image: url('../img/bg-Base/luke-chesser-3rWagdKBF7U-unsplash.jpg');
     width: var(--contaier-width);
     height: var(--container-height);
 
