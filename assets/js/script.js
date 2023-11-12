@@ -28,10 +28,10 @@ function guardarToDo(){
     //Verificar si el input esta Vacio
     const isEmpty = toDoValue === '';
     if(isEmpty){
-        alert("El ToDo esta Vacio");
+        showNotification("El ToDo esta Vacio");
     }
     else if(duplicado){
-        alert("La tarea ya Existe");
+        showNotification("La tarea ya Existe");
     }
     else
     {
@@ -117,4 +117,18 @@ function deleteToDo(todoId) {
     // re-render
     renderToDo();
     localStorage.setItem('toDos', JSON.stringify(toDos));
+}
+
+  // Mostrar Notificacion
+function showNotification(msg) {
+    // Cambiar el mensaje
+    notificationElement.innerHTML = msg;
+
+    // Notificacion ENTER
+    notificationElement.classList.add('notif-enter');
+    
+    // Permiso - Notificacion
+    setTimeout(() => {
+        notificationElement.classList.remove('notif-enter');
+    }, 2000);
 }
