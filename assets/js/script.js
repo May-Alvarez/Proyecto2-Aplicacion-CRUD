@@ -1,6 +1,7 @@
 // Seleccionar Elementos
 const form = document.getElementById('todoForm');
 const toDoInput= document.getElementById('nuevaTarea');
+const toDoListElement = document.getElementById('toDo-list');
 
 //Variables
 let toDos = [];
@@ -10,7 +11,7 @@ form.addEventListener('submit', function(event){
     event.preventDefault();
     
     guardarToDo();
-    
+    renderToDo();
 });
 
 //Funcion GuardarToDo
@@ -38,3 +39,43 @@ function guardarToDo(){
         toDoInput.value = '';
     }
 }
+
+//Funcion Render
+function renderToDo(){
+    //Limpiar Elementos
+
+    toDoListElement.innerHTML = "";
+
+    //Render de las Tareas
+    toDos.forEach((toDo, index) => {
+        toDoListElement.innerHTML += `
+        <div class="todo" id=${index}>
+        <i 
+            class="bi ${toDo.checked ? 'bi-check-circle-fill' : 'bi-circle'}"
+            style="color : ${toDo.color}"
+            data-action="check">
+        </i>
+        <p class="${toDo.checked ? 'checked' : ''}" data-action="check">${toDo.value}</p>
+        <i class="bi bi-pencil-square" data-action="edit"></i>
+        <i class="bi bi-trash" data-action="delete"></i>
+        </div>
+        `;
+    });
+}
+
+// Evento Click para todos los elementos del To Do
+toDoListElement.addEventListener('click', (event) => {
+    const target = event.target;
+    const parentElement = target.parentNode;
+
+    // Id de las Tareas
+    const todo = parentElement;
+    const toDoId = Number(todo.id);
+
+  // target action
+    const action = target.dataset.action;
+
+    action === 'check' && checkTodo(toDoId);
+    action === 'edit' && editTodo(toDoId);
+    action === 'delete' && deleteTodo(toDoId);
+});
