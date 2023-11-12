@@ -2,9 +2,10 @@
 const form = document.getElementById('todoForm');
 const toDoInput= document.getElementById('nuevaTarea');
 const toDoListElement = document.getElementById('toDo-list');
+const notificationElement = document.querySelector('.notification');
 
 //Variables
-let toDos = [];
+let toDos = JSON.parse(localStorage.getItem('toDos')) || [];
 let EditTodoId = -1;
 
 // 1st render
@@ -16,6 +17,7 @@ form.addEventListener('submit', function(event){
     
     guardarToDo();
     renderToDo();
+    localStorage.setItem('toDos', JSON.stringify(toDos));
 });
 
 //Funcion GuardarToDo
@@ -45,7 +47,7 @@ function guardarToDo(){
             toDos.push({
                 value : toDoValue,
                 checked : false,
-                color : '#' + Math.floor(Math.random()*16777215).toString(26) //Genera un color random
+                color: '#' + Math.floor(Math.random() * 16777215).toString(16) //Genera un color random
             });
         }
 
@@ -55,9 +57,13 @@ function guardarToDo(){
 
 //Funcion Render
 function renderToDo(){
-    //Limpiar Elementos
-
-    toDoListElement.innerHTML = "";
+    if (toDos.length === 0) {
+        toDoListElement.innerHTML = '<center>Nada que hacer!</center>';
+        return;
+    }
+    
+      // Limpiar elemento re-render
+    toDoListElement.innerHTML = '';
 
     //Render de las Tareas
     toDos.forEach((toDo, index) => {
@@ -81,6 +87,8 @@ toDoListElement.addEventListener('click', (event) => {
     const target = event.target;
     const parentElement = target.parentNode;
 
+    if (parentElement.className !== 'toDos') return;
+
     // Id de las Tareas
     const todo = parentElement;
     const toDoId = Number(todo.id);
@@ -99,6 +107,7 @@ function checkToDo(todoId) {
         ...todo,
         checked: index === todoId ? !todo.checked : todo.checked,
     }));
+    
     renderToDo();
     localStorage.setItem('todos', JSON.stringify(toDos));
 }
