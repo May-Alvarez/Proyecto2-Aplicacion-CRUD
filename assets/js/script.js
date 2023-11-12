@@ -75,7 +75,17 @@ toDoListElement.addEventListener('click', (event) => {
   // target action
     const action = target.dataset.action;
 
-    action === 'check' && checkTodo(toDoId);
-    action === 'edit' && editTodo(toDoId);
-    action === 'delete' && deleteTodo(toDoId);
+    action === 'check' && checkToDo(toDoId);
+    action === 'edit' && editToDo(toDoId);
+    action === 'delete' && deleteToDo(toDoId);
 });
+
+// Funcion Check
+function checkToDo(todoId) {
+    let todos = todos.map((todo, index) => ({
+        ...todo,
+        checked: index === todoId ? !todo.checked : todo.checked,
+    }));
+    renderToDo();
+    localStorage.setItem('todos', JSON.stringify(todos));
+}
