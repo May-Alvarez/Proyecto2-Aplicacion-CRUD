@@ -5,6 +5,10 @@ const toDoListElement = document.getElementById('toDo-list');
 
 //Variables
 let toDos = [];
+let EditTodoId = -1;
+
+// 1st render
+renderToDo();
 
 // Evento submit del Formulario
 form.addEventListener('submit', function(event){
@@ -31,11 +35,20 @@ function guardarToDo(){
     }
     else
     {
-        toDos.push({
-            value : toDoValue,
-            checked : false,
-            color : '#' + Math.floor(Math.random()*16777215).toString(26) //Genera un color random
-        });
+        if(EditTodoId >= 0){
+            toDos = toDos.map((todo, index) => ({
+                ...todo,
+                value: index === EditTodoId ? toDoValue : todo.value,
+            }));
+            EditTodoId = -1;
+        }else{
+            toDos.push({
+                value : toDoValue,
+                checked : false,
+                color : '#' + Math.floor(Math.random()*16777215).toString(26) //Genera un color random
+            });
+        }
+
         toDoInput.value = '';
     }
 }
@@ -82,10 +95,16 @@ toDoListElement.addEventListener('click', (event) => {
 
 // Funcion Check
 function checkToDo(todoId) {
-    let todos = todos.map((todo, index) => ({
+    toDos = toDos.map((todo, index) => ({
         ...todo,
         checked: index === todoId ? !todo.checked : todo.checked,
     }));
     renderToDo();
-    localStorage.setItem('todos', JSON.stringify(todos));
+    localStorage.setItem('todos', JSON.stringify(toDos));
+}
+
+// Funcion Editar
+function editToDo(todoId) {
+    toDoInput.value = toDos[todoId].value;
+    EditTodoId = todoId;
 }
