@@ -1,8 +1,9 @@
 footer{
-    background: var(--background-footer);
+    color: var(--background-footer);
     padding: 16px 0;
     clear: both;
     max-width: 100%;
+    font-size: 11px;
 }
 
 .footer_derechos{
